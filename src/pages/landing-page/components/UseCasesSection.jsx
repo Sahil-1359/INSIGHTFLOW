@@ -30,32 +30,7 @@ const UseCasesSection = () => {
     }
   ];
 
-  const testimonials = [
-    {
-      name: 'Sarah Chen',
-      role: 'Senior Business Analyst',
-      company: 'TechCorp Solutions',
-      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
-      quote: 'InsightFlow reduced our data analysis time from days to minutes. The AI insights are incredibly accurate and actionable.',
-      rating: 5
-    },
-    {
-      name: 'Michael Rodriguez',
-      role: 'Marketing Director',
-      company: 'Growth Dynamics',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
-      quote: 'The ROI recommendations helped us optimize our campaigns and increase conversion rates by 40% in just two months.',
-      rating: 5
-    },
-    {
-      name: 'Emily Watson',
-      role: 'Operations Manager',
-      company: 'Efficient Systems',
-      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
-      quote: 'The automated analysis identified bottlenecks we never knew existed. Our operational efficiency improved dramatically.',
-      rating: 5
-    }
-  ];
+  // Testimonials section removed per request
 
   return (
     <section className="py-24 px-6 relative">
@@ -133,64 +108,7 @@ const UseCasesSection = () => {
           ))}
         </div>
 
-        {/* Testimonials */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
-        >
-          <h3 className="text-3xl font-bold text-foreground mb-4">
-            What Our Users Say
-          </h3>
-          <p className="text-muted-foreground">
-            Real feedback from professionals who transformed their data analysis workflow
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials?.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="glass rounded-2xl p-6 border border-border hover:shadow-soft transition-spring"
-            >
-              {/* Rating */}
-              <div className="flex items-center space-x-1 mb-4">
-                {[...Array(testimonial?.rating)]?.map((_, i) => (
-                  <Icon key={i} name="Star" size={16} className="text-accent fill-current" />
-                ))}
-              </div>
-
-              {/* Quote */}
-              <p className="text-muted-foreground mb-6 italic leading-relaxed">
-                "{testimonial?.quote}"
-              </p>
-
-              {/* Author */}
-              <div className="flex items-center space-x-3">
-                <img
-                  src={testimonial?.avatar}
-                  alt={testimonial?.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-accent/20"
-                  onError={(e) => {
-                    e.target.src = '/assets/images/no_image.png';
-                  }}
-                />
-                <div>
-                  <div className="font-semibold text-foreground">{testimonial?.name}</div>
-                  <div className="text-sm text-muted-foreground">
-                    {testimonial?.role} at {testimonial?.company}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {/* Testimonials removed */}
       </div>
     </section>
   );
