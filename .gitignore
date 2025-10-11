@@ -1,0 +1,17 @@
+.DS_Store
+node_modules
+.idea
+package-lock.json
+/build
+.vscode/
+.idea/
+vite.config.*s.*
+
+# Env and deployment metadata
+.env*
+!.env.example
+.env.local
+.vercel
+
+# Web artifacts
+favicon.ico_files/
