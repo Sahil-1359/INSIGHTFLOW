@@ -9,7 +9,6 @@ const UseCasesSection = () => {
       title: 'Business Analysts',
       description: 'Transform complex datasets into clear business insights with automated pattern recognition and trend analysis.',
       example: 'Analyze quarterly sales data to identify top-performing products and seasonal trends',
-      metrics: ['40% faster analysis', '95% accuracy rate', '60+ data points'],
       color: 'from-blue-500 to-cyan-500'
     },
     {
@@ -17,7 +16,6 @@ const UseCasesSection = () => {
       title: 'Marketing Professionals',
       description: 'Optimize campaign performance with AI-driven insights on customer behavior and conversion patterns.',
       example: 'Evaluate email campaign metrics to improve open rates and customer engagement',
-      metrics: ['3x ROI improvement', '85% prediction accuracy', '25+ KPIs tracked'],
       color: 'from-purple-500 to-pink-500'
     },
     {
@@ -25,7 +23,6 @@ const UseCasesSection = () => {
       title: 'Operations Managers',
       description: 'Streamline processes and identify efficiency bottlenecks with comprehensive operational data analysis.',
       example: 'Monitor production metrics to reduce waste and optimize resource allocation',
-      metrics: ['30% cost reduction', '50% time savings', '99% uptime tracking'],
       color: 'from-green-500 to-emerald-500'
     }
   ];
@@ -95,15 +92,6 @@ const UseCasesSection = () => {
                 </p>
               </div>
 
-              {/* Metrics */}
-              <div className="space-y-2">
-                {useCase?.metrics?.map((metric, metricIndex) => (
-                  <div key={metricIndex} className="flex items-center space-x-2 text-sm">
-                    <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
-                    <span className="text-foreground font-medium">{metric}</span>
-                  </div>
-                ))}
-              </div>
             </motion.div>
           ))}
         </div>

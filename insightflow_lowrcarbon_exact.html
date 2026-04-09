@@ -1,0 +1,705 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#ffffff;--black:#0a0a0a;--gray-50:#f9fafb;--gray-100:#f3f4f6;
+  --gray-200:#e5e7eb;--gray-400:#9ca3af;--gray-600:#4b5563;--gray-800:#1f2937;
+  --green:#16a34a;--green-light:#dcfce7;--green-mid:#bbf7d0;--green-dark:#15803d;
+  --radius:12px;--radius-sm:8px;--radius-pill:100px;
+}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+.nav{height:60px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--gray-200);background:rgba(255,255,255,.95);backdrop-filter:blur(12px);position:sticky;top:0;z-index:99}
+.nav-logo{font-size:17px;font-weight:800;color:var(--black);letter-spacing:-.4px}
+.nav-links{display:flex;gap:28px}
+.nav-a{font-size:14px;color:var(--gray-600);cursor:pointer;text-decoration:none;transition:color .15s}
+.nav-a:hover{color:var(--black)}
+.nav-right{display:flex;gap:10px;align-items:center}
+.btn-ghost{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);padding:8px 18px;font-size:14px;font-weight:600;color:var(--black);cursor:pointer;font-family:'Inter',sans-serif;transition:border-color .2s}
+.btn-ghost:hover{border-color:var(--gray-400)}
+.btn-black{background:var(--black);border:none;border-radius:var(--radius-sm);padding:8px 20px;font-size:14px;font-weight:600;color:var(--white);cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s}
+.btn-black:hover{background:#1a1a1a}
+
+/* HERO */
+.hero{padding:72px 48px 0;text-align:center;background:var(--white)}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;background:var(--green-light);border:1px solid var(--green-mid);border-radius:var(--radius-pill);padding:6px 14px;font-size:13px;font-weight:500;color:var(--green-dark);margin-bottom:28px;cursor:pointer}
+.hero-pill-dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.hero h1{font-size:clamp(36px,4.8vw,60px);font-weight:800;line-height:1.1;letter-spacing:-2px;color:var(--black);margin-bottom:20px;max-width:700px;margin-left:auto;margin-right:auto}
+.hero-sub{font-size:17px;color:var(--gray-600);line-height:1.7;max-width:500px;margin:0 auto 36px}
+.hero-btns{display:flex;gap:12px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+.btn-green{background:var(--green);border:none;border-radius:var(--radius-sm);padding:11px 26px;font-size:14px;font-weight:700;color:var(--white);cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s}
+.btn-green:hover{background:var(--green-dark)}
+.hero-note{font-size:13px;color:var(--gray-400);margin-bottom:52px}
+
+/* DASHBOARD SCREENSHOT MOCKUP */
+.dash-wrap{position:relative;max-width:900px;margin:0 auto}
+.dash-shadow{position:absolute;bottom:-20px;left:5%;right:5%;height:80px;background:radial-gradient(ellipse,rgba(0,0,0,.15),transparent 70%);pointer-events:none;z-index:0}
+.dash-frame{background:#0f1117;border:1px solid rgba(255,255,255,.12);border-radius:14px 14px 0 0;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.08),0 32px 80px rgba(0,0,0,.18);position:relative;z-index:1}
+.df-chrome{background:#1a1d27;border-bottom:1px solid rgba(255,255,255,.08);padding:11px 16px;display:flex;align-items:center;gap:7px}
+.df-dot{width:11px;height:11px;border-radius:50%}
+.df-url{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.06);border-radius:5px;padding:5px 0;font-size:11px;color:rgba(255,255,255,.3);text-align:center;max-width:320px;margin:0 auto;font-family:monospace}
+.df-body{display:flex;height:370px}
+/* sidebar */
+.df-sb{width:168px;min-width:168px;background:#0c0e15;border-right:1px solid rgba(255,255,255,.06);padding:16px 10px;display:flex;flex-direction:column;gap:2px}
+.df-sb-logo{font-size:14px;font-weight:800;padding:4px 8px 14px;color:#fff;letter-spacing:-.3px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:10px}
+.df-sb-logo span{color:#4ade80}
+.df-sb-i{font-size:12px;padding:8px 10px;border-radius:7px;color:rgba(255,255,255,.35);cursor:default;display:flex;align-items:center;gap:8px}
+.df-sb-i.on{background:rgba(255,255,255,.07);color:#fff;font-weight:600}
+.df-sb-sep{height:1px;background:rgba(255,255,255,.06);margin:8px 8px}
+/* main */
+.df-main{flex:1;padding:20px;background:#0f1117;display:flex;flex-direction:column;gap:12px;overflow:hidden}
+.df-page-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:-4px}
+.df-page-sub{font-size:11px;color:rgba(255,255,255,.3);font-family:monospace}
+.df-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.df-kpi{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px 14px}
+.df-kpi-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.df-kpi-lbl{font-size:10px;color:rgba(255,255,255,.4);font-family:monospace;text-transform:uppercase;letter-spacing:.4px}
+.df-kpi-delta{font-size:10px;font-weight:700;font-family:monospace}
+.df-kpi-delta.up{color:#4ade80}
+.df-kpi-delta.warn{color:#fb923c}
+.df-kpi-val{font-size:22px;font-weight:800;color:#fff;letter-spacing:-1px;line-height:1}
+.df-kpi-unit{font-size:10px;color:rgba(255,255,255,.3);margin-top:3px}
+.df-charts{display:grid;grid-template-columns:3fr 2fr;gap:8px;flex:1}
+.df-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px 14px;overflow:hidden}
+.df-ct{font-size:11px;font-weight:600;color:rgba(255,255,255,.5);margin-bottom:10px}
+.ai-list{display:flex;flex-direction:column;gap:5px}
+.ai-item{font-size:10px;color:rgba(255,255,255,.5);padding:6px 8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:6px;line-height:1.4;display:flex;gap:6px;align-items:flex-start}
+.ai-dot{width:4px;height:4px;border-radius:50%;background:#4ade80;flex-shrink:0;margin-top:3px}
+.ai-qa{display:flex;gap:6px;margin-top:8px}
+.ai-qa-btn{flex:1;font-size:10px;color:rgba(255,255,255,.35);padding:6px 8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:6px;text-align:center;font-family:monospace}
+
+/* LOGOS STRIP */
+.logos-strip{padding:32px 48px;border-top:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100);background:var(--white)}
+.logos-lbl{font-size:13px;color:var(--gray-400);text-align:center;margin-bottom:18px}
+.logos-row{display:flex;gap:48px;justify-content:center;align-items:center;flex-wrap:wrap}
+.logo-txt{font-size:14px;font-weight:700;color:var(--gray-200);letter-spacing:.5px}
+
+/* SHARED SECTION */
+.sec{padding:80px 48px;background:var(--white)}
+.sec.gray{background:var(--gray-50)}
+.sec-label{font-size:12px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:1.5px;text-align:center;margin-bottom:12px}
+.sec-h{font-size:clamp(26px,3vw,38px);font-weight:800;color:var(--black);text-align:center;letter-spacing:-1px;line-height:1.15;margin-bottom:12px}
+.sec-sub{font-size:16px;color:var(--gray-600);text-align:center;line-height:1.7;max-width:500px;margin:0 auto 52px}
+
+/* BENEFITS BENTO */
+.bento{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:960px;margin:0 auto}
+.bc{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:28px 28px 0;overflow:hidden;transition:border-color .2s;display:flex;flex-direction:column}
+.bc:hover{border-color:var(--gray-400)}
+.bc-tag{display:inline-block;font-size:11px;font-weight:600;color:var(--green-dark);background:var(--green-light);padding:4px 10px;border-radius:var(--radius-pill);margin-bottom:14px}
+.bc-title{font-size:19px;font-weight:800;color:var(--black);letter-spacing:-.4px;margin-bottom:8px}
+.bc-desc{font-size:14px;color:var(--gray-600);line-height:1.7;margin-bottom:22px}
+.bc-vis{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:10px 10px 0 0;padding:16px;margin:0 -28px;flex:1}
+
+/* bento upload vis */
+.bv-drop{border:1.5px dashed var(--gray-300);border-radius:10px;padding:20px;text-align:center;background:var(--white)}
+.bv-drop-icon{width:36px;height:36px;background:var(--green-light);border-radius:9px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.bv-drop-icon svg{width:18px;height:18px;stroke:var(--green);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.bv-drop-title{font-size:13px;font-weight:600;color:var(--black);margin-bottom:3px}
+.bv-drop-sub{font-size:11px;color:var(--gray-400)}
+.bv-specs{display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.bv-pill{font-size:10px;padding:3px 9px;border-radius:var(--radius-pill);background:var(--gray-100);color:var(--gray-600);border:1px solid var(--gray-200)}
+
+/* bento completeness vis */
+.bv-comp{display:flex;flex-direction:column;gap:10px}
+.bvc-row{display:flex;flex-direction:column;gap:4px}
+.bvc-meta{display:flex;justify-content:space-between;font-size:12px}
+.bvc-name{color:var(--gray-600)}
+.bvc-pct{font-family:monospace;font-weight:600;color:var(--black)}
+.bvc-track{height:5px;background:var(--gray-200);border-radius:3px;overflow:hidden}
+.bvc-fill{height:100%;border-radius:3px}
+
+/* bento anomaly vis */
+.bv-scan{display:flex;flex-direction:column;gap:6px}
+.bvs-hdr{display:flex;justify-content:space-between;margin-bottom:4px}
+.bvs-title{font-size:12px;font-weight:700;color:var(--black)}
+.bvs-badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:var(--radius-pill);background:#fee2e2;color:#b91c1c;border:1px solid #fecaca}
+.bvs-row{display:flex;align-items:center;gap:10px;padding:7px 10px;background:var(--white);border:1px solid var(--gray-200);border-radius:7px;font-size:12px}
+.bvs-id{color:var(--gray-400);font-family:monospace;flex:1}
+.bvs-val{font-family:monospace;font-weight:600;color:#b91c1c}
+.bvs-sig{font-size:10px;padding:2px 6px;border-radius:var(--radius-pill);background:#fee2e2;color:#b91c1c}
+
+/* bento ai vis */
+.bv-ai{display:flex;flex-direction:column;gap:6px}
+.bva-item{display:flex;gap:8px;padding:10px 12px;border-radius:9px;font-size:12px;line-height:1.5;border:1px solid transparent;align-items:flex-start}
+.bva-item.info{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
+.bva-item.warn{background:#fffbeb;border-color:#fde68a;color:#92400e}
+.bva-item.neutral{background:var(--gray-50);border-color:var(--gray-200);color:var(--gray-600)}
+.bva-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.bva-item.info .bva-dot{background:var(--green)}
+.bva-item.warn .bva-dot{background:#f59e0b}
+.bva-item.neutral .bva-dot{background:var(--gray-400)}
+
+/* HOW IT WORKS */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:960px;margin:0 auto}
+.step{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:24px 24px 0;overflow:hidden;transition:border-color .2s}
+.step:hover{border-color:var(--gray-400)}
+.step-num{font-size:12px;font-weight:700;color:var(--green);margin-bottom:10px;font-family:monospace;letter-spacing:.3px}
+.step-title{font-size:16px;font-weight:800;color:var(--black);margin-bottom:8px;letter-spacing:-.3px}
+.step-desc{font-size:13px;color:var(--gray-600);line-height:1.68;margin-bottom:20px}
+.step-vis{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:9px 9px 0 0;padding:14px;margin:0 -24px}
+.sv-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--gray-200);font-size:12px}
+.sv-row:last-child{border-bottom:none}
+.sv-key{color:var(--gray-600)}
+.sv-val{font-family:monospace;font-weight:600;color:var(--black)}
+.sv-pill{font-size:10px;padding:2px 8px;border-radius:var(--radius-pill);font-weight:600}
+.sv-green{background:var(--green-light);color:var(--green-dark)}
+.sv-orange{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
+.mini-chart{height:56px;display:flex;align-items:flex-end;gap:4px;padding-top:8px}
+.mc-bar{border-radius:3px 3px 0 0;flex:1}
+.mc-bar-lbl{font-size:9px;color:var(--gray-400);text-align:center;margin-top:4px;font-family:monospace}
+
+/* FEATURES */
+.feat-rows{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+.feat-row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.feat-row.r{direction:rtl}
+.feat-row.r>*{direction:ltr}
+.feat-label{font-size:12px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px}
+.feat-title{font-size:22px;font-weight:800;color:var(--black);letter-spacing:-.5px;line-height:1.2;margin-bottom:12px}
+.feat-desc{font-size:14px;color:var(--gray-600);line-height:1.75;margin-bottom:18px}
+.feat-tags{display:flex;flex-wrap:wrap;gap:6px}
+.feat-tag{font-size:11px;padding:4px 10px;border-radius:var(--radius-pill);background:var(--gray-100);color:var(--gray-600);border:1px solid var(--gray-200)}
+.feat-vis-box{background:var(--gray-50);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:20px;overflow:hidden}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:880px;margin:0 auto}
+.plan{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:28px;transition:border-color .2s;position:relative}
+.plan.featured{border-color:var(--black);border-width:2px}
+.plan.featured::before{content:'Most popular';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--black);color:var(--white);font-size:11px;font-weight:700;padding:4px 12px;border-radius:var(--radius-pill);white-space:nowrap}
+.plan-name{font-size:15px;font-weight:800;color:var(--black);margin-bottom:4px}
+.plan-desc{font-size:13px;color:var(--gray-600);line-height:1.6;margin-bottom:18px}
+.plan-price{font-size:38px;font-weight:800;color:var(--black);letter-spacing:-1.5px;line-height:1}
+.plan-price sup{font-size:18px;vertical-align:top;margin-top:6px;display:inline-block}
+.plan-period{font-size:13px;color:var(--gray-400);margin-bottom:4px}
+.plan-note{font-size:11px;color:var(--gray-400);font-family:monospace;margin-bottom:22px}
+.plan-div{height:1px;background:var(--gray-200);margin-bottom:18px}
+.plan-feats{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.pf{display:flex;gap:8px;font-size:13px;color:var(--gray-600);line-height:1.5;align-items:flex-start}
+.pf-check{width:16px;height:16px;border-radius:50%;background:var(--green-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.pf-check svg{width:9px;height:9px;stroke:var(--green-dark);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.plan-cta{width:100%;padding:11px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;border:none;transition:all .2s}
+.plan-cta.outline{background:var(--white);border:1.5px solid var(--gray-200);color:var(--black)}
+.plan-cta.outline:hover{border-color:var(--black)}
+.plan-cta.solid{background:var(--black);color:var(--white)}
+.plan-cta.solid:hover{background:#1f2937}
+
+/* FAQ */
+.faq-wrap{max-width:640px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--gray-200);cursor:pointer}
+.faq-q{padding:18px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:15px;font-weight:600;color:var(--black)}
+.faq-icon{font-size:20px;color:var(--gray-400);flex-shrink:0;transition:transform .25s;line-height:1}
+.faq-a{font-size:14px;color:var(--gray-600);line-height:1.72;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:18px}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--black)}
+
+/* CTA BOTTOM */
+.cta-sec{padding:80px 48px;text-align:center;background:var(--black);position:relative;overflow:hidden}
+.cta-sec h2{font-size:clamp(26px,3.5vw,40px);font-weight:800;color:var(--white);letter-spacing:-1px;margin-bottom:12px;line-height:1.15}
+.cta-sec p{font-size:16px;color:rgba(255,255,255,.55);margin-bottom:28px;line-height:1.7}
+.cta-notes{display:flex;gap:20px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.cta-note{font-size:13px;color:rgba(255,255,255,.35);display:flex;align-items:center;gap:5px}
+.cta-note-dot{width:4px;height:4px;border-radius:50%;background:var(--green);flex-shrink:0}
+/* mini mockup in CTA */
+.cta-mockup{max-width:540px;margin:0 auto 48px;background:#0f1117;border:1px solid rgba(255,255,255,.1);border-radius:12px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.cta-m-bar{background:#1a1d27;border-bottom:1px solid rgba(255,255,255,.07);padding:8px 14px;display:flex;gap:5px}
+.cta-m-body{padding:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cta-kpi{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px}
+.cta-kpi-lbl{font-size:9px;color:rgba(255,255,255,.35);font-family:monospace;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+.cta-kpi-val{font-size:20px;font-weight:800;color:#fff;letter-spacing:-1px}
+.cta-kpi-sub{font-size:9px;color:rgba(255,255,255,.25);margin-top:2px}
+
+/* FOOTER */
+.footer{padding:48px 48px 0;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;border-top:1px solid var(--gray-200)}
+.footer-logo{font-size:16px;font-weight:800;color:var(--black);margin-bottom:8px;letter-spacing:-.3px}
+.footer-logo span{color:var(--green)}
+.footer-tagline{font-size:13px;color:var(--gray-600);max-width:200px;line-height:1.6}
+.footer-col-h{font-size:12px;font-weight:700;color:var(--black);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}
+.footer-link{font-size:14px;color:var(--gray-600);display:block;margin-bottom:8px;cursor:pointer;transition:color .15s}
+.footer-link:hover{color:var(--black)}
+.footer-bottom{padding:20px 48px;border-top:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:center;margin-top:40px}
+.footer-copy{font-size:13px;color:var(--gray-400)}
+</style>
+
+<h2 class="sr-only">InsightFlow landing page — same layout as LowrCarbon, clean white theme, InsightFlow content</h2>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">InsightFlow</div>
+  <div class="nav-links">
+    <a class="nav-a">Features</a>
+    <a class="nav-a">How it works</a>
+    <a class="nav-a">Pricing</a>
+    <a class="nav-a">FAQ</a>
+  </div>
+  <div class="nav-right">
+    <button class="btn-ghost">Sign in</button>
+    <button class="btn-black">Try for free</button>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-pill">
+    <div class="hero-pill-dot"></div>
+    GPT-4 insight synthesis now available
+  </div>
+  <h1>Upload CSV.<br>Get Instant Intelligence.</h1>
+  <p class="hero-sub">InsightFlow turns raw spreadsheet data into live dashboards, anomaly detection, trend analysis, and AI recommendations — entirely in your browser. Zero backend.</p>
+  <div class="hero-btns">
+    <button class="btn-green" style="padding:11px 26px;font-size:14px">Try for free</button>
+    <button class="btn-ghost" style="padding:11px 22px;font-size:14px">View live demo</button>
+  </div>
+  <p class="hero-note">No signup required &nbsp;·&nbsp; No data leaves your device &nbsp;·&nbsp; No backend</p>
+
+  <!-- FLOATING DARK DASHBOARD MOCKUP -->
+  <div class="dash-wrap">
+    <div class="dash-shadow"></div>
+    <div class="dash-frame">
+      <div class="df-chrome">
+        <div class="df-dot" style="background:#ff5f57"></div>
+        <div class="df-dot" style="background:#febc2e"></div>
+        <div class="df-dot" style="background:#28c840"></div>
+        <div class="df-url">insightflow-sv.vercel.app / results-dashboard</div>
+      </div>
+      <div class="df-body">
+        <div class="df-sb">
+          <div class="df-sb-logo">Insight<span>Flow</span></div>
+          <div class="df-sb-i on">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+            Dashboard
+          </div>
+          <div class="df-sb-i">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="14 8 11 13 5.5 3 3 8 1 8"/></svg>
+            Trends
+          </div>
+          <div class="df-sb-i">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><line x1="8" y1="5.5" x2="8" y2="8"/><line x1="8" y1="10.5" x2="8.01" y2="10.5"/></svg>
+            Anomalies
+          </div>
+          <div class="df-sb-i">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12V4a1 1 0 011-1h4l1 2h5a1 1 0 011 1v6a1 1 0 01-1 1H3a1 1 0 01-1-1z"/></svg>
+            Segments
+          </div>
+          <div class="df-sb-sep"></div>
+          <div class="df-sb-i">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9A6 6 0 112 9"/><path d="M8 3v3l2 2"/></svg>
+            GPT-4 Insights
+          </div>
+          <div class="df-sb-i">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10v3H3v-3M8 2v8M5 7l3 3 3-3"/></svg>
+            Export
+          </div>
+        </div>
+        <div class="df-main">
+          <div>
+            <div class="df-page-title">Analysis Results</div>
+            <div class="df-page-sub">sales_q3_2024.csv &nbsp;·&nbsp; 14,320 rows &nbsp;·&nbsp; 18 cols</div>
+          </div>
+          <div class="df-kpis">
+            <div class="df-kpi">
+              <div class="df-kpi-top"><div class="df-kpi-lbl">Completeness</div><span class="df-kpi-delta up">&#x2191; 94.7%</span></div>
+              <div class="df-kpi-val">94.7<span style="font-size:14px;opacity:.4">%</span></div>
+              <div class="df-kpi-unit">Data readiness score</div>
+            </div>
+            <div class="df-kpi">
+              <div class="df-kpi-top"><div class="df-kpi-lbl">Anomaly Rate</div><span class="df-kpi-delta warn">458 rows</span></div>
+              <div class="df-kpi-val">3.2<span style="font-size:14px;opacity:.4">%</span></div>
+              <div class="df-kpi-unit">3&sigma; outliers flagged</div>
+            </div>
+            <div class="df-kpi">
+              <div class="df-kpi-top"><div class="df-kpi-lbl">MoM Growth</div><span class="df-kpi-delta up">&#x2191; +11.2%</span></div>
+              <div class="df-kpi-val">+11.2<span style="font-size:14px;opacity:.4">%</span></div>
+              <div class="df-kpi-unit">Aug–Sep average</div>
+            </div>
+          </div>
+          <div class="df-charts">
+            <div class="df-card">
+              <div class="df-ct">Monthly Revenue Trend</div>
+              <svg viewBox="0 0 240 72" width="100%" height="72" preserveAspectRatio="none">
+                <defs><linearGradient id="gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(74,222,128,.25)"/><stop offset="100%" stop-color="rgba(74,222,128,0)"/></linearGradient></defs>
+                <path d="M0 60 L40 52 L80 42 L120 46 L160 28 L200 16 L240 20" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round"/>
+                <path d="M0 60 L40 52 L80 42 L120 46 L160 28 L200 16 L240 20 L240 72 L0 72Z" fill="url(#gl)"/>
+                <circle cx="40" cy="52" r="2.5" fill="#4ade80"/>
+                <circle cx="80" cy="42" r="2.5" fill="#4ade80"/>
+                <circle cx="120" cy="46" r="2.5" fill="#4ade80"/>
+                <circle cx="160" cy="28" r="2.5" fill="#4ade80"/>
+                <circle cx="200" cy="16" r="2.5" fill="#4ade80"/>
+                <circle cx="240" cy="20" r="2.5" fill="#4ade80"/>
+              </svg>
+            </div>
+            <div class="df-card">
+              <div class="df-ct">GPT-4 Insights</div>
+              <div class="ai-list">
+                <div class="ai-item"><div class="ai-dot"></div>Revenue +11.2% MoM — strong Q3 momentum</div>
+                <div class="ai-item"><div class="ai-dot"></div>458 anomaly rows flagged — verify spikes</div>
+                <div class="ai-item"><div class="ai-dot"></div>Enterprise at 38% — consider retention push</div>
+              </div>
+              <div class="ai-qa">
+                <div class="ai-qa-btn">Connect source</div>
+                <div class="ai-qa-btn">Export report</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS STRIP -->
+<div class="logos-strip">
+  <div class="logos-lbl">Export data from any tool — InsightFlow reads it</div>
+  <div class="logos-row">
+    <div class="logo-txt">SALESFORCE</div>
+    <div class="logo-txt">HUBSPOT</div>
+    <div class="logo-txt">EXCEL</div>
+    <div class="logo-txt">GOOGLE SHEETS</div>
+    <div class="logo-txt">AIRTABLE</div>
+    <div class="logo-txt">POSTGRES</div>
+  </div>
+</div>
+
+<!-- ═══ BENEFITS ═══ -->
+<section class="sec gray">
+  <div class="sec-label">Features</div>
+  <h2 class="sec-h">Why you'll actually enjoy<br>looking at your data</h2>
+  <p class="sec-sub">Because getting insights from a CSV shouldn't require a data science degree.</p>
+  <div class="bento">
+
+    <!-- Card 1: Upload -->
+    <div class="bc">
+      <div class="bc-tag">Zero backend</div>
+      <div class="bc-title">Drop a file, get a dashboard</div>
+      <div class="bc-desc">Drag and drop any CSV. PapaParse streams it locally — your data never leaves your browser, ever. No server, no upload, no waiting.</div>
+      <div class="bc-vis">
+        <div class="bv-drop">
+          <div class="bv-drop-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+          <div class="bv-drop-title">Drop your CSV here</div>
+          <div class="bv-drop-sub">or click to browse — data stays local</div>
+          <div class="bv-specs">
+            <span class="bv-pill">CSV only</span>
+            <span class="bv-pill">Max 50MB</span>
+            <span class="bv-pill">No login</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Completeness -->
+    <div class="bc">
+      <div class="bc-tag">Data quality</div>
+      <div class="bc-title">Know your data before you trust it</div>
+      <div class="bc-desc">InsightFlow scores every column for completeness and validity the moment you upload. No more acting on dirty data.</div>
+      <div class="bc-vis">
+        <div class="bv-comp">
+          <div class="bvc-row"><div class="bvc-meta"><span class="bvc-name">customer_id</span><span class="bvc-pct" style="color:#16a34a">100%</span></div><div class="bvc-track"><div class="bvc-fill" style="width:100%;background:#16a34a"></div></div></div>
+          <div class="bvc-row"><div class="bvc-meta"><span class="bvc-name">revenue</span><span class="bvc-pct" style="color:#16a34a">98.2%</span></div><div class="bvc-track"><div class="bvc-fill" style="width:98.2%;background:#16a34a"></div></div></div>
+          <div class="bvc-row"><div class="bvc-meta"><span class="bvc-name">region</span><span class="bvc-pct" style="color:#ca8a04">91.6%</span></div><div class="bvc-track"><div class="bvc-fill" style="width:91.6%;background:#ca8a04"></div></div></div>
+          <div class="bvc-row"><div class="bvc-meta"><span class="bvc-name">deal_stage</span><span class="bvc-pct" style="color:#ca8a04">87.3%</span></div><div class="bvc-track"><div class="bvc-fill" style="width:87.3%;background:#ca8a04"></div></div></div>
+          <div class="bvc-row"><div class="bvc-meta"><span class="bvc-name">notes</span><span class="bvc-pct" style="color:#dc2626">61.8%</span></div><div class="bvc-track"><div class="bvc-fill" style="width:61.8%;background:#dc2626"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Anomaly Detection -->
+    <div class="bc">
+      <div class="bc-tag">3σ Detection</div>
+      <div class="bc-title">Catch anomalies before they catch you</div>
+      <div class="bc-desc">Statistical 3-sigma outlier scan runs on every numeric column automatically. Business spikes, entry errors — all flagged instantly.</div>
+      <div class="bc-vis">
+        <div class="bv-scan">
+          <div class="bvs-hdr"><span class="bvs-title">Flagged anomalies</span><span class="bvs-badge">458 rows</span></div>
+          <div class="bvs-row"><span class="bvs-id">Row 4,821 · revenue</span><span class="bvs-val">$847,200</span><span class="bvs-sig">+4.2σ</span></div>
+          <div class="bvs-row"><span class="bvs-id">Row 11,034 · revenue</span><span class="bvs-val">$912,500</span><span class="bvs-sig">+4.8σ</span></div>
+          <div class="bvs-row"><span class="bvs-id">Row 2,109 · deal_size</span><span class="bvs-val">0.00</span><span class="bvs-sig">-3.1σ</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4: AI Insights -->
+    <div class="bc">
+      <div class="bc-tag">GPT-4 powered</div>
+      <div class="bc-title">AI that actually tells you what to do</div>
+      <div class="bc-desc">GPT-4 reads your detected patterns and writes plain-language recommendations. Not summaries — actionable next steps.</div>
+      <div class="bc-vis">
+        <div class="bv-ai">
+          <div class="bva-item info"><div class="bva-dot"></div>Revenue grew +11.2% MoM on average Aug–Sep, exceeding your 7% quarterly target.</div>
+          <div class="bva-item warn"><div class="bva-dot"></div>458 rows show revenue &gt;3σ from mean. Verify if genuine spikes or data-entry errors.</div>
+          <div class="bva-item neutral"><div class="bva-dot"></div>Enterprise segment at 38.4% — consider dedicated retention initiatives for this group.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="sec">
+  <div class="sec-label">How it works</div>
+  <h2 class="sec-h">Three steps from raw data<br>to clear decisions</h2>
+  <p class="sec-sub">From CSV to insight in less time than it takes to make a coffee.</p>
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-num">01. Upload</div>
+      <div class="step-title">Drop your CSV</div>
+      <div class="step-desc">Drag any .csv file into the upload zone. PapaParse streams it in your browser with dynamic typing — no server contact, ever.</div>
+      <div class="step-vis">
+        <div class="sv-row"><span class="sv-key">File</span><span class="sv-val">sales_q3_2024.csv</span></div>
+        <div class="sv-row"><span class="sv-key">Rows</span><span class="sv-val">14,320</span></div>
+        <div class="sv-row"><span class="sv-key">Columns</span><span class="sv-val">18</span></div>
+        <div class="sv-row"><span class="sv-key">Parse time</span><span class="sv-val">0.8s</span></div>
+        <div class="sv-row"><span class="sv-key">Status</span><span class="sv-pill sv-green">Ready</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">02. Analyse</div>
+      <div class="step-title">Let the engine run</div>
+      <div class="step-desc">Completeness scoring, 3σ outlier detection, date column detection, and monthly aggregations all run in milliseconds locally.</div>
+      <div class="step-vis">
+        <div class="sv-row"><span class="sv-key">Completeness</span><span class="sv-pill sv-green">94.7%</span></div>
+        <div class="sv-row"><span class="sv-key">Validity</span><span class="sv-pill sv-green">97.1%</span></div>
+        <div class="sv-row"><span class="sv-key">Anomalies</span><span class="sv-pill sv-orange">458 flagged</span></div>
+        <div class="sv-row"><span class="sv-key">Trend detected</span><span class="sv-pill sv-green">Jan–Sep</span></div>
+        <div class="sv-row"><span class="sv-key">GPT-4</span><span class="sv-pill sv-green">Synthesising...</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">03. Act</div>
+      <div class="step-title">Read the dashboard</div>
+      <div class="step-desc">Interactive charts, KPI cards, anomaly tables, segment breakdowns, and GPT-4 recommendations render live from your data.</div>
+      <div class="step-vis">
+        <div class="mini-chart">
+          <div style="display:flex;flex-direction:column;align-items:center;flex:1"><div class="mc-bar" style="height:50%;background:#dcfce7;border:1px solid #bbf7d0;width:100%"></div><div class="mc-bar-lbl">Jan</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;flex:1"><div class="mc-bar" style="height:58%;background:#dcfce7;border:1px solid #bbf7d0;width:100%"></div><div class="mc-bar-lbl">Feb</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;flex:1"><div class="mc-bar" style="height:66%;background:#dcfce7;border:1px solid #bbf7d0;width:100%"></div><div class="mc-bar-lbl">Mar</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;flex:1"><div class="mc-bar" style="height:60%;background:#dcfce7;border:1px solid #bbf7d0;width:100%"></div><div class="mc-bar-lbl">Apr</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;flex:1"><div class="mc-bar" style="height:78%;background:#16a34a;width:100%"></div><div class="mc-bar-lbl">May</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;flex:1"><div class="mc-bar" style="height:90%;background:#16a34a;width:100%"></div><div class="mc-bar-lbl">Jun</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ FEATURES (alternating rows) ═══ -->
+<section class="sec gray">
+  <div class="sec-label">Features</div>
+  <h2 class="sec-h">Everything you need.<br>Nothing you don't.</h2>
+  <p class="sec-sub">Built for analysts, product managers, and founders who don't have time to learn BI tools.</p>
+
+  <div class="feat-rows">
+
+    <div class="feat-row">
+      <div class="feat-text">
+        <div class="feat-label">Trend Detection</div>
+        <div class="feat-title">Monthly trends, zero configuration</div>
+        <div class="feat-desc">InsightFlow finds your date columns automatically and builds monthly aggregations, growth rates, and seasonality signals. No setup, no formulas.</div>
+        <div class="feat-tags"><span class="feat-tag">Auto date detection</span><span class="feat-tag">MoM growth</span><span class="feat-tag">Recharts powered</span></div>
+      </div>
+      <div class="feat-vis-box">
+        <div style="font-size:12px;font-weight:600;color:#4b5563;margin-bottom:10px">Monthly Progress — Jan to Sep</div>
+        <svg viewBox="0 0 260 80" width="100%" height="80" preserveAspectRatio="none">
+          <defs><linearGradient id="fg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(22,163,74,.2)"/><stop offset="100%" stop-color="rgba(22,163,74,0)"/></linearGradient></defs>
+          <path d="M0 65 L43 56 L86 46 L130 50 L173 32 L216 20 L260 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"/>
+          <path d="M0 65 L43 56 L86 46 L130 50 L173 32 L216 20 L260 24 L260 80 L0 80Z" fill="url(#fg1)"/>
+          <circle cx="43" cy="56" r="3" fill="#16a34a" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="86" cy="46" r="3" fill="#16a34a" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="130" cy="50" r="3" fill="#16a34a" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="173" cy="32" r="3" fill="#16a34a" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="216" cy="20" r="3" fill="#16a34a" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="260" cy="24" r="3" fill="#16a34a" stroke="#fff" stroke-width="1.5"/>
+        </svg>
+        <div style="display:flex;gap:16px;margin-top:10px">
+          <div style="font-size:11px;color:#9ca3af">Jan <span style="color:#16a34a;font-weight:600">$180k</span></div>
+          <div style="font-size:11px;color:#9ca3af">Sep <span style="color:#16a34a;font-weight:600">$310k</span></div>
+          <div style="font-size:11px;color:#9ca3af">Growth <span style="color:#16a34a;font-weight:600">+72%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat-row r">
+      <div class="feat-text">
+        <div class="feat-label">Segment Analysis</div>
+        <div class="feat-title">See exactly who drives your numbers</div>
+        <div class="feat-desc">D3.js-powered segment distribution shows the top 5 category concentrations from any categorical column — automatically identified from your data.</div>
+        <div class="feat-tags"><span class="feat-tag">D3.js powered</span><span class="feat-tag">Auto category detect</span><span class="feat-tag">Top 5 segments</span></div>
+      </div>
+      <div class="feat-vis-box">
+        <div style="font-size:12px;font-weight:600;color:#4b5563;margin-bottom:12px">Customer Segment Distribution</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:10px"><div style="width:8px;height:8px;border-radius:2px;background:#16a34a;flex-shrink:0"></div><div style="font-size:12px;color:#4b5563;flex:1">Enterprise</div><div style="flex:2;height:6px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:38.4%;height:100%;background:#16a34a;border-radius:3px"></div></div><div style="font-size:12px;font-weight:700;color:#0a0a0a;min-width:36px;text-align:right">38.4%</div></div>
+          <div style="display:flex;align-items:center;gap:10px"><div style="width:8px;height:8px;border-radius:2px;background:#4b5563;flex-shrink:0"></div><div style="font-size:12px;color:#4b5563;flex:1">SMB</div><div style="flex:2;height:6px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:27.1%;height:100%;background:#4b5563;border-radius:3px"></div></div><div style="font-size:12px;font-weight:700;color:#0a0a0a;min-width:36px;text-align:right">27.1%</div></div>
+          <div style="display:flex;align-items:center;gap:10px"><div style="width:8px;height:8px;border-radius:2px;background:#9ca3af;flex-shrink:0"></div><div style="font-size:12px;color:#4b5563;flex:1">Startup</div><div style="flex:2;height:6px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:19.2%;height:100%;background:#9ca3af;border-radius:3px"></div></div><div style="font-size:12px;font-weight:700;color:#0a0a0a;min-width:36px;text-align:right">19.2%</div></div>
+          <div style="display:flex;align-items:center;gap:10px"><div style="width:8px;height:8px;border-radius:2px;background:#d1d5db;flex-shrink:0"></div><div style="font-size:12px;color:#4b5563;flex:1">Mid-Market</div><div style="flex:2;height:6px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:15.3%;height:100%;background:#d1d5db;border-radius:3px"></div></div><div style="font-size:12px;font-weight:700;color:#0a0a0a;min-width:36px;text-align:right">15.3%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat-row">
+      <div class="feat-text">
+        <div class="feat-label">AI Synthesis</div>
+        <div class="feat-title">Recommendations, not just charts</div>
+        <div class="feat-desc">Your analysis results get sent to GPT-4, which synthesises plain-language business recommendations — not generic summaries, but specific to your data's patterns.</div>
+        <div class="feat-tags"><span class="feat-tag">GPT-4 powered</span><span class="feat-tag">Benchmark 3 LLMs</span><span class="feat-tag">Specific to your data</span></div>
+      </div>
+      <div class="feat-vis-box">
+        <div style="font-size:12px;font-weight:600;color:#4b5563;margin-bottom:12px">GPT-4 Insight Feed</div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="padding:10px 12px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;font-size:12px;color:#166534;line-height:1.5"><strong>Strong Q3 momentum:</strong> Revenue grew +11.2% MoM on average Aug–Sep, exceeding your 7% quarterly target.</div>
+          <div style="padding:10px 12px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;font-size:12px;color:#92400e;line-height:1.5"><strong>Anomaly cluster:</strong> 458 rows show revenue &gt;3σ from mean. Verify if genuine spikes or entry errors before reporting.</div>
+          <div style="padding:10px 12px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;font-size:12px;color:#4b5563;line-height:1.5"><strong>Segment concentration:</strong> Enterprise at 38.4% of rows — consider targeted retention initiatives for this group.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="sec">
+  <div class="sec-label">Pricing</div>
+  <h2 class="sec-h">Simple, honest pricing</h2>
+  <p class="sec-sub">No surprise charges. No data stored. Pay for what you actually use.</p>
+  <div class="pricing-grid">
+
+    <div class="plan">
+      <div class="plan-name">Free</div>
+      <div class="plan-desc">For individuals exploring what their data is telling them.</div>
+      <div class="plan-price"><sup>$</sup>0</div>
+      <div class="plan-period">/month</div>
+      <div class="plan-note">No credit card needed</div>
+      <div class="plan-div"></div>
+      <div class="plan-feats">
+        <div class="pf"><div class="pf-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Upload up to 3 CSVs per day</div>
+        <div class="pf"><div class="pf-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Basic KPI dashboard</div>
+        <div class="pf"><div class="pf-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>3σ anomaly detection</div>
+        <div class="pf"><div class="pf-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Completeness scoring</div>
+        <div class="pf"><div class="pf-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Email support</div>
+      </div>
+      <button class="plan-cta outline">Try for free</button>
+    </div>
+
+    <div class="plan featured">
+      <div class="plan-name">Pro</div>
+      <div class="plan-desc">For analysts and teams who need GPT-4 insights daily.</div>
+      <div class="plan-price"><sup>$</sup>19</div>
+      <div class="plan-period">/month</div>
+      <div class="plan-note">Billed monthly, cancel anytime</div>
+      <div class="plan-div"></div>
+      <div class="plan-feats">
+        <div class="pf"><div class="pf-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Everything in Free</div>
+        <div class="pf"><div class="pf-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Unlimited CSV uploads</div>
+        <div class="pf"><div class="pf-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>GPT-4 recommendations</div>
+        <div class="pf"><div class="pf-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>LLM benchmark (3 models)</div>
+        <div class="pf"><div class="pf-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Export PDF reports</div>
+        <div class="pf"><div class="pf-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Priority support</div>
+      </div>
+      <button class="plan-cta solid">Get started</button>
+    </div>
+
+    <div class="plan">
+      <div class="plan-name">Team</div>
+      <div class="plan-desc">For teams sharing insights across multiple datasets.</div>
+      <div class="plan-price"><sup>$</sup>49</div>
+      <div class="plan-period">/month</div>
+      <div class="plan-note">Up to 10 seats included</div>
+      <div class="plan-div"></div>
+      <div class="plan-feats">
+        <div class="pf"><div class="pf-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Everything in Pro</div>
+        <div class="pf"><div class="pf-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Shared dashboards</div>
+        <div class="pf"><div class="pf-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Team workspace</div>
+        <div class="pf"><div class="pf-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>API access</div>
+        <div class="pf"><div class="pf-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Dedicated support</div>
+      </div>
+      <button class="plan-cta outline">Contact us</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="sec gray">
+  <div class="sec-label">FAQ</div>
+  <h2 class="sec-h">Frequently asked questions</h2>
+  <p class="sec-sub">In case you had questions before uploading your first file.</p>
+  <div class="faq-wrap" id="faqWrap">
+    <div class="faq-item"><div class="faq-q">Does my data ever leave my browser? <span class="faq-icon">+</span></div><div class="faq-a">No. All CSV parsing, statistical computation, and metric extraction happens entirely in your browser using PapaParse. Your raw data rows never touch a server. Only the summarised analysis results (not the raw data) are sent to GPT-4 for insight synthesis.</div></div>
+    <div class="faq-item"><div class="faq-q">What does 3σ anomaly detection actually do? <span class="faq-icon">+</span></div><div class="faq-a">For each numeric column, InsightFlow calculates the mean and standard deviation. Any value more than 3 standard deviations from the mean is flagged as an outlier. This catches genuine business spikes as well as data-entry errors that would skew your analysis.</div></div>
+    <div class="faq-item"><div class="faq-q">Which file types are supported? <span class="faq-icon">+</span></div><div class="faq-a">Currently .csv files only. The parser handles comma, semicolon, and tab-separated formats automatically. Max file size is 50MB. Support for Excel (.xlsx) is on the roadmap.</div></div>
+    <div class="faq-item"><div class="faq-q">How does the GPT-4 integration work? <span class="faq-icon">+</span></div><div class="faq-a">After local analysis completes, InsightFlow sends a structured summary of the findings — column names, detected metrics, outlier rates, trend direction — to the GPT-4 API. The raw row data is never sent. GPT-4 then generates plain-language recommendations based on the summary.</div></div>
+    <div class="faq-item"><div class="faq-q">Can I compare multiple LLMs? <span class="faq-icon">+</span></div><div class="faq-a">Yes — on the Pro plan, InsightFlow benchmarks GPT-4, Claude, and Gemini side-by-side on the same analysis summary, so you can compare the quality and specificity of each model's recommendations directly.</div></div>
+    <div class="faq-item"><div class="faq-q">Is there a free plan? <span class="faq-icon">+</span></div><div class="faq-a">Yes. The free plan lets you upload up to 3 CSVs per day and access the full dashboard, completeness scoring, and anomaly detection — no credit card required. GPT-4 insight synthesis is a Pro feature.</div></div>
+  </div>
+</section>
+
+<!-- ═══ CTA BOTTOM ═══ -->
+<section class="cta-sec">
+  <div class="cta-mockup">
+    <div class="cta-m-bar">
+      <div class="df-dot" style="background:#ff5f57"></div>
+      <div class="df-dot" style="background:#febc2e"></div>
+      <div class="df-dot" style="background:#28c840"></div>
+    </div>
+    <div class="cta-m-body">
+      <div class="cta-kpi"><div class="cta-kpi-lbl">Completeness</div><div class="cta-kpi-val">94.7%</div><div class="cta-kpi-sub">Data readiness</div></div>
+      <div class="cta-kpi"><div class="cta-kpi-lbl">Anomalies</div><div class="cta-kpi-val">3.2%</div><div class="cta-kpi-sub">458 flagged</div></div>
+      <div class="cta-kpi"><div class="cta-kpi-lbl">MoM Growth</div><div class="cta-kpi-val">+11.2%</div><div class="cta-kpi-sub">Aug–Sep avg</div></div>
+    </div>
+  </div>
+  <h2>Turn your next CSV into<br>a decision</h2>
+  <p>No signup required. No backend. Drop a file and get your dashboard in under 2 seconds.</p>
+  <div class="hero-btns">
+    <button class="btn-green" style="padding:13px 32px;font-size:15px">Try for free</button>
+    <button class="btn-ghost" style="padding:13px 24px;font-size:15px;border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.7)">View live demo</button>
+  </div>
+  <div class="cta-notes">
+    <div class="cta-note"><div class="cta-note-dot"></div>No credit card</div>
+    <div class="cta-note"><div class="cta-note-dot"></div>Sign up in 30 seconds</div>
+    <div class="cta-note"><div class="cta-note-dot"></div>Data never leaves your browser</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">
+    <div class="footer-logo">Insight<span>Flow</span></div>
+    <div class="footer-tagline">Client-side CSV analytics powered by GPT-4. No backend, no data upload.</div>
+  </div>
+  <div>
+    <div class="footer-col-h">Product</div>
+    <a class="footer-link">Features</a>
+    <a class="footer-link">How it works</a>
+    <a class="footer-link">Pricing</a>
+    <a class="footer-link">Changelog</a>
+  </div>
+  <div>
+    <div class="footer-col-h">Legal</div>
+    <a class="footer-link">Privacy</a>
+    <a class="footer-link">Terms</a>
+  </div>
+  <div>
+    <div class="footer-col-h">Links</div>
+    <a class="footer-link">GitHub</a>
+    <a class="footer-link">Live demo</a>
+    <a class="footer-link">Contact</a>
+  </div>
+</div>
+<div class="footer-bottom">
+  <div class="footer-copy">©2026 InsightFlow. All rights reserved.</div>
+  <div class="footer-copy">Built by Sahil Verma</div>
+</div>
+
+<script>
+document.getElementById('faqWrap').addEventListener('click', function(e){
+  const item = e.target.closest('.faq-item');
+  if(!item) return;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if(!wasOpen) item.classList.add('open');
+});
+</script>

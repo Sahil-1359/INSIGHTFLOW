@@ -4,13 +4,6 @@ import Button from '../../../components/ui/Button';
 import Icon from '../../../components/AppIcon';
 
 const CTASection = ({ onGetStarted }) => {
-  const stats = [
-    { value: '10,000+', label: 'Active Users', icon: 'Users' },
-    { value: '50,000+', label: 'Files Analyzed', icon: 'FileText' },
-    { value: '99.9%', label: 'Uptime', icon: 'Shield' },
-    { value: '4.9/5', label: 'User Rating', icon: 'Star' }
-  ];
-
   return (
     <section className="py-24 px-6 relative">
       {/* Background with Gradient */}
@@ -121,49 +114,6 @@ const CTASection = ({ onGetStarted }) => {
           </div>
         </motion.div>
 
-        {/* Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="glass rounded-2xl p-8 border border-border"
-        >
-          <h3 className="text-2xl font-bold text-foreground mb-8">
-            Trusted by Industry Leaders
-          </h3>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats?.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 * index }}
-                className="text-center group"
-              >
-                <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-spring shadow-layered">
-                  <Icon name={stat?.icon} size={24} color="white" strokeWidth={2} />
-                </div>
-                <div className="text-3xl font-bold text-foreground mb-2 group-hover:text-accent transition-spring">
-                  {stat?.value}
-                </div>
-                <div className="text-sm text-muted-foreground">
-                  {stat?.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Bottom Message */}
-          <div className="mt-8 pt-8 border-t border-border">
-            <p className="text-muted-foreground">
-              Join the growing community of data professionals who choose InsightFlow for reliable, 
-              AI-powered data analysis. Your success story starts here.
-            </p>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
